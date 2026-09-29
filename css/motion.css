@@ -1,0 +1,299 @@
+.js [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-distance), 0);
+  transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.js .team-card .team-card__media {
+  clip-path: inset(100% 0 0 0);
+}
+
+.js .team-card.is-visible .team-card__media {
+  clip-path: inset(0 0 0 0);
+  animation: clip-reveal var(--dur-slow) var(--ease) backwards;
+  animation-delay: calc(var(--order, 0) * 120ms);
+}
+
+.js .team-card.is-visible .team-card__media img {
+  animation: media-settle var(--dur-slow) var(--ease) backwards;
+  animation-delay: calc(var(--order, 0) * 120ms);
+}
+
+.js .team-card > :not(.team-card__media):not(.team-card__cta) {
+  opacity: 0;
+  transform: translate3d(0, calc(var(--reveal-distance) / 2), 0);
+  transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
+}
+
+.js .team-card.is-visible > :not(.team-card__media):not(.team-card__cta) {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--order, 0) * 120ms + 240ms);
+}
+
+@keyframes clip-reveal {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes media-settle {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.js [data-hero-title] {
+  opacity: 0;
+  animation: hero-failsafe var(--dur-slow) var(--ease) 2.4s forwards;
+}
+
+.js [data-hero-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  animation: hero-failsafe var(--dur-slow) var(--ease) 2.4s forwards;
+}
+
+@keyframes hero-failsafe {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.js .hero.is-intro [data-hero-title],
+.js .hero.is-intro [data-hero-reveal] {
+  animation: none;
+}
+
+.js .hero.is-intro [data-hero-title] {
+  opacity: 1;
+}
+
+.js .hero.is-intro [data-hero-reveal] {
+  transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
+  transition-delay: calc(560ms + var(--d, 0) * 120ms);
+}
+
+.js .hero.is-played [data-hero-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+.hero__line {
+  display: block;
+  overflow: clip;
+  padding-block: 0.12em 0.08em;
+  margin-block: -0.12em -0.08em;
+}
+
+.hero__line-inner {
+  display: block;
+  transform: translate3d(0, 112%, 0);
+  transition: transform var(--dur-slow) var(--ease);
+  transition-delay: calc(100ms + var(--line, 0) * var(--stagger));
+}
+
+.hero.is-played .hero__line-inner {
+  transform: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__media {
+      animation: hero-parallax linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 100vh;
+    }
+  }
+}
+
+@keyframes hero-parallax {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 14vh, 0);
+  }
+}
+
+.mobile-menu li,
+.mobile-menu__footer {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+}
+
+.mobile-menu.is-open li,
+.mobile-menu.is-open .mobile-menu__footer {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(80ms + var(--i, 0) * 40ms);
+}
+
+.confirm.is-entering {
+  animation: confirm-in var(--dur-slow) var(--ease) both;
+}
+
+.confirm.is-entering .confirm__line {
+  animation: line-draw var(--dur-slow) var(--ease) 120ms both;
+}
+
+@keyframes confirm-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--reveal-distance), 0);
+  }
+}
+
+@keyframes line-draw {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+html.is-lang-out [data-i18n],
+html.is-lang-out [data-i18n-count],
+html.is-lang-out [data-price],
+html.is-lang-out [data-duration] {
+  opacity: 0;
+  transition: opacity 90ms linear;
+}
+
+html.is-lang-in [data-i18n],
+html.is-lang-in [data-i18n-count],
+html.is-lang-in [data-price],
+html.is-lang-in [data-duration] {
+  transition: opacity 110ms linear;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--dur-fast);
+  animation-timing-function: var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    transition: opacity var(--dur-base) linear;
+  }
+
+  .js .team-card .team-card__media {
+    clip-path: none;
+    opacity: 0;
+    transition: opacity var(--dur-base) linear;
+  }
+
+  .js .team-card.is-visible .team-card__media {
+    opacity: 1;
+    animation: none;
+  }
+
+  .js .team-card.is-visible .team-card__media img {
+    animation: none;
+  }
+
+  .js .team-card > :not(.team-card__media):not(.team-card__cta) {
+    transition: opacity var(--dur-base) linear;
+  }
+
+  .hero__line-inner {
+    transform: none;
+    transition: none;
+  }
+
+  .js .hero.is-intro [data-hero-title] {
+    opacity: 0;
+    transition: opacity var(--dur-base) linear;
+  }
+
+  .js .hero.is-played [data-hero-title] {
+    opacity: 1;
+  }
+
+  .js .hero.is-intro [data-hero-reveal] {
+    transition: opacity var(--dur-base) linear;
+    transition-delay: calc(200ms + var(--d, 0) * 80ms);
+  }
+
+  .site-header {
+    transition: none;
+  }
+
+  .btn::before,
+  .menu__link::after,
+  .site-nav__link::after,
+  .lang__link::after,
+  .site-footer__link::after,
+  .field__line {
+    transform: none;
+    opacity: 0;
+    transition: opacity var(--dur-fast) linear;
+  }
+
+  .btn:active::before,
+  .menu__link:focus-visible::after,
+  .field__input:focus + .field__line {
+    opacity: 1;
+  }
+
+  .menu__name,
+  .menu__price,
+  .team-card__media img,
+  .burger__line,
+  .choice__face::before {
+    transition-property: opacity;
+  }
+
+  .team-card__cta {
+    transform: none;
+  }
+
+  .mobile-menu li,
+  .mobile-menu__footer {
+    transform: none;
+  }
+
+  .confirm.is-entering {
+    animation: fade-in var(--dur-base) linear both;
+  }
+
+  .confirm.is-entering .confirm__line {
+    animation: none;
+  }
+
+  .field__error.is-shown {
+    animation: fade-in var(--dur-fast) linear;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (hover: hover) and (pointer: fine) {
+  .btn:hover::before,
+  .menu__link:hover::after,
+  .site-nav__link:hover::after,
+  .lang__link:not([aria-current="true"]):hover::after,
+  .site-footer__link:hover::after {
+    opacity: 1;
+  }
+
+  .team-card:hover .team-card__media img {
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}

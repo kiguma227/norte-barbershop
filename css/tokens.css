@@ -1,0 +1,107 @@
+:root {
+  --color-bg: #141414;
+  --color-bg-alt: #1e1e1e;
+  --color-bg-raised: #262626;
+  --color-text: #e8e4dc;
+  --color-text-muted: #a9a6a0;
+  --color-text-faint: #6f6c68;
+  --color-placeholder: #8a8781;
+  --color-accent: #c8a45c;
+  --color-accent-soft: rgba(200, 164, 92, 0.14);
+  --color-accent-line: rgba(200, 164, 92, 0.55);
+  --color-detail: #5a1f1f;
+  --color-error: #d9887c;
+  --color-line: rgba(232, 228, 220, 0.12);
+  --color-line-strong: rgba(232, 228, 220, 0.42);
+  --color-glass: rgba(20, 20, 20, 0.74);
+  --color-scrim: rgba(12, 12, 12, 0.96);
+  --color-on-accent: #141414;
+
+  --font-display: "Cormorant", "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --font-body: "Manrope", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --text-hero: clamp(2.75rem, 0.9rem + 8.2vw, 8.25rem);
+  --text-h2: clamp(2.25rem, 1.58rem + 2.96vw, 4.25rem);
+  --text-h3: clamp(1.375rem, 1.21rem + 0.74vw, 1.875rem);
+  --text-quote: clamp(1.375rem, 1.21rem + 0.74vw, 1.875rem);
+  --text-stat: clamp(3rem, 2.5rem + 2.22vw, 4.5rem);
+  --text-lead: clamp(1.0625rem, 0.98rem + 0.37vw, 1.3125rem);
+  --text-body: clamp(1rem, 0.979rem + 0.093vw, 1.0625rem);
+  --text-small: 0.875rem;
+  --text-micro: 0.8125rem;
+
+  --leading-hero: 0.92;
+  --leading-heading: 1.02;
+  --leading-title: 1.12;
+  --leading-quote: 1.28;
+  --leading-lead: 1.5;
+  --leading-body: 1.65;
+  --leading-ui: 1.25;
+
+  --tracking-hero: -0.012em;
+  --tracking-heading: 0.004em;
+  --tracking-title: 0.04em;
+  --tracking-logo: 0.24em;
+  --tracking-ui: 0.02em;
+  --tracking-code: 0.08em;
+
+  --space-half: 0.25rem;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 2.5rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+  --space-10: 5rem;
+  --space-12: 6rem;
+  --space-16: 8rem;
+  --space-20: 10rem;
+
+  --section-space: clamp(var(--space-12), 5.33rem + 3.7vw, var(--space-20));
+  --head-space: clamp(var(--space-6), 2.33rem + 1.48vw, var(--space-8));
+  --gutter: var(--space-2);
+  --grid-gap: var(--space-2);
+  --content-max: 80rem;
+  --header-h: 4rem;
+
+  --radius: 2px;
+  --shadow-float: 0 24px 64px -32px rgba(0, 0, 0, 0.7);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 200ms;
+  --dur-base: 400ms;
+  --dur-slow: 800ms;
+  --stagger: 90ms;
+  --reveal-distance: 24px;
+  --nudge: 8px;
+}
+
+@media (min-width: 600px) {
+  :root {
+    --gutter: var(--space-4);
+    --grid-gap: var(--space-3);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --gutter: var(--space-6);
+    --grid-gap: var(--space-4);
+    --header-h: 4.5rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --gutter: var(--space-10);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --reveal-distance: 0px;
+    --nudge: 0px;
+    --stagger: 0ms;
+  }
+}
